@@ -1,21 +1,56 @@
-<p>product-list works!</p>
-<table class="table table-hover">
-    <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">Image</th>
-            <th scope="col">Name</th>
-            <th scope="col">Unit Price</th>
-            <th scope="col">In Stock</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let product of products">
-            <td scope="row">{{ product.sku }}</td>
-            <td scope="row"><img src="{{ product.imageUrl }}" style="height: 50px;"/></td>
-            <td>{{ product.name }}</td>
-            <td> {{ product.unitPrice | currency:'USD' }}</td>
-            <td> {{ product.unitsInStock }}</td>
-        </tr>
-    </tbody>
-</table>
+<div class="main-content">
+    <div class="section-content section-content-p30">
+        <div class="container-fluid">
+            <div class="row">
+
+                <div class="col-md-3" *ngFor="let product of products">
+                    <div class="product-box">
+                        <a href="product-detail.html">
+                            <img src="{{ product.imageUrl }}" class="img-responsive">
+                        </a>
+                        <a class="text-decoration-none" href="product-detail.html">
+                            <h1>{{ product.name }}</h1>
+                        </a>
+                        <h2>Duis aute irure dolor in reprehenderit in voluptate </h2>
+                        <div class="price"> {{ product.unitPrice | currency:'USD' }}</div>
+                        <a href="#" class="primary-btn">Add to cart</a>
+                    </div>
+                </div>
+                
+            </div>
+
+            <div class="footer-pagination" >
+                <div class="row">
+                    <div class="col-md-6"></div>
+                    <div class="col-md-3">
+                        <div class="items">
+                            <label>Item per page</label> <select>
+                                <option>10</option>
+                                <option>20</option>
+                                <option>30</option>
+                                <option>40</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="number">1 - 10 of 100</div>
+                    </div>
+                    <div class="col-md-1">
+                        <div class="arrows">
+                            <a href="#"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
+                            <a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- END MAIN CONTENT-->
+
+
+
+
+
+
