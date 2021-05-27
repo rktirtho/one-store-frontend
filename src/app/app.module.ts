@@ -1,6 +1,6 @@
 import { ProductService } from './services/product.service';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, Component } from '@angular/core';
 
 
 import { AppComponent } from './app.component';
@@ -8,6 +8,15 @@ import { ProductListComponent } from './components/product-list/product-list.com
 
 import { HttpClientModule } from '@angular/common/http';
 import { from } from 'rxjs';
+import { Routes, RouterModule } from '@angular/router'
+
+const routes: Routes=[
+  {path : "category/:id", component: ProductListComponent},
+  {path : "category", component: ProductListComponent},
+  {path : "products", component: ProductListComponent},
+  {path : "", redirectTo : "products", pathMatch: "full"},
+  {path : "**", redirectTo : "products", pathMatch: "full"}
+]
 
 @NgModule({
   declarations: [
@@ -15,6 +24,7 @@ import { from } from 'rxjs';
     ProductListComponent
   ],
   imports: [
+    RouterModule.forRoot(routes),
     BrowserModule,
     HttpClientModule
   ],
