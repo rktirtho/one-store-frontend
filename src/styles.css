@@ -674,6 +674,10 @@ select{
     color:#828482
 }
 
+.active{
+    font-weight: bold;
+}
+
 /* 
  * ----------------------------
  * Shopping Cart Details
