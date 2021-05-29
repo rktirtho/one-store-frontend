@@ -11,15 +11,16 @@
                         <a class="text-decoration-none" href="product-detail.html">
                             <h1>{{ product.name }}</h1>
                         </a>
-                        <h2>Duis aute irure dolor in reprehenderit in voluptate </h2>
                         <div class="price"> {{ product.unitPrice | currency:'USD' }}</div>
                         <a href="#" class="primary-btn">Add to cart</a>
                     </div>
                 </div>
-                
+
+                <div *ngIf="products?.length == 0" class="alert alert-warning" role="alert">Product Not fount</div>
+
             </div>
 
-            <div class="footer-pagination" >
+            <div class="footer-pagination">
                 <div class="row">
                     <div class="col-md-6"></div>
                     <div class="col-md-3">
@@ -48,9 +49,3 @@
 </div>
 
 <!-- END MAIN CONTENT-->
-
-
-
-
-
-
