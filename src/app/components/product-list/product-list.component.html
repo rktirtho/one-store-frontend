@@ -5,14 +5,14 @@
 
                 <div class="col-md-3" *ngFor="let product of products">
                     <div class="product-box">
-                        <a href="product-detail.html">
+                        <a routerLink="/products/{{ product.id }}">
                             <img src="{{ product.imageUrl }}" class="img-responsive">
                         </a>
-                        <a class="text-decoration-none" href="product-detail.html">
+                        <a class="text-decoration-none" routerLink="/products/{{ product.id }}">
                             <h1>{{ product.name }}</h1>
                         </a>
                         <div class="price"> {{ product.unitPrice | currency:'USD' }}</div>
-                        <a href="#" class="primary-btn">Add to cart</a>
+                        <a routerLink="/products/{{ product.id }}" class="primary-btn">Add to cart</a>
                     </div>
                 </div>
 
