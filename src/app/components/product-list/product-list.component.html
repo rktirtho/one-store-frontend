@@ -20,30 +20,42 @@
 
             </div>
 
+            <!-- begin footer -->
             <div class="footer-pagination">
                 <div class="row">
-                    <div class="col-md-6"></div>
-                    <div class="col-md-3">
-                        <div class="items">
-                            <label>Item per page</label> <select>
-                                <option>10</option>
-                                <option>20</option>
-                                <option>30</option>
-                                <option>40</option>
-                            </select>
+                    <div class="col-md-4"></div>
+
+                    <div class="col-md-8">
+                        <div class="row">
+                            <div class="col-md-7" style="padding-left: 30%">
+
+                                <ngb-pagination [(page)]="thePageNumber" [pageSize]="thePageSize" [maxSize]="5"
+                                    [collectionSize]="theTotalElement" [boundaryLinks]="true" (pageChange)="listOfProduct()">
+
+                                </ngb-pagination>
+
+                            </div>
+                            <div class="col-md-5 mt-2" style="text-align: right;">
+                                <span class="m-2">Page Size</span>
+                                <select (change)="updatePageSize($event.target.value)">
+                                    <option>2</option>
+                                    <option>12</option>
+                                    <option selected="true">20</option>
+                                    <option>40</option>
+                                    <option>80</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-2">
-                        <div class="number">1 - 10 of 100</div>
-                    </div>
-                    <div class="col-md-1">
-                        <div class="arrows">
-                            <a href="#"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
-                            <a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
-                        </div>
-                    </div>
+
+
                 </div>
             </div>
+            <!-- end footer -->
+
+
+
+
         </div>
     </div>
 </div>

@@ -11,15 +11,18 @@ import { ActivatedRoute } from '@angular/router';
 export class ProductListComponent implements OnInit {
 
   products: Product[]=[];
+  previousCateforyId: number = 1;
   currentCategoryid: number=1;
   searchMode : boolean=false;
 
 
   // New property for Pagination
 
-  thePazeNumber :number =1;
-  thePageSize : number = 20;
+  thePageNumber :number =1;
+  thePageSize : number = 12;
   theTotalElement : number = 0;
+
+  previousKeyWord:string = null;
 
   constructor(private productService: ProductService,
     private route: ActivatedRoute
@@ -47,12 +50,14 @@ export class ProductListComponent implements OnInit {
   }
   handleSearchProduct() {
     const theKeyword : string = this.route.snapshot.paramMap.get("keyword");
-    console.log(`component page ${theKeyword}`)
-    this.productService.searchProducts(theKeyword).subscribe(
-      data => this.products = data
-    )
+    
+    if(this.previousKeyWord != theKeyword){
+      this.thePageNumber =1;
+    }
+    this.previousKeyWord = theKeyword;
 
-
+    this.productService.searchProductstPaginate(theKeyword, this.thePageNumber-1,
+      this.thePageSize, this.currentCategoryid).subscribe(this.processResult())
   }
 
   handleListProduct(){
@@ -65,10 +70,32 @@ export class ProductListComponent implements OnInit {
       this.currentCategoryid =1;
     }
 
-    this.productService.getProducts(this.currentCategoryid).subscribe(
-      data => this.products = data
-    )
-  }
 
+    if(this.previousCateforyId != this.currentCategoryid){
+      this.thePageNumber=1
+    }
+
+    this.previousCateforyId = this.currentCategoryid
+
+    console.log(`current category id ${this.currentCategoryid} thePageNumber ${this.thePageNumber}` )
+
+    this.productService.getProductsListPaginate(this.thePageNumber-1,
+      this.thePageSize, this.currentCategoryid).subscribe(this.processResult())
+    
+  }
+  processResult(){
+    return data => {
+      this.products = data._embedded.products;
+      this.thePageNumber = data.page.number+1;
+      this.thePageSize = data.page.size;
+      this.theTotalElement = data.page.totalElements
+    }
+  }
+  updatePageSize(selectedPageSize){
+    this.thePageSize = selectedPageSize
+    this.thePageNumber = 1;
+    this.listOfProduct();
+
+  }
 
 }
