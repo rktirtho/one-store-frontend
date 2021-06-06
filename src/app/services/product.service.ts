@@ -12,8 +12,8 @@ export class ProductService {
 
 
 
-  baseUrl = 'http://localhost:8080/api/products'
-  productCategoryUrl = "http://localhost:8080/api/product-category"
+  baseUrl = 'https://eshop-back-end.herokuapp.com/api/products'
+  productCategoryUrl = "https://eshop-back-end.herokuapp.com/api/product-category"
 
   constructor(private httpClient: HttpClient) { }
 
